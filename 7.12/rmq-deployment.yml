@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rmq-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      components: rmq
+  template:
+    metadata:
+      labels:
+        components: rmq
+    spec:
+      containers:
+        - name: rmq
+          image: rabbitmq:3.13.7-management
+          ports:
+            - containerPort: 5672
+            - containerPort: 15672
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: rmq
+            - name: RABBITMQ_DEFAULT_PASS
+              value: rmq
+          resources:
+            limits:
+              memory: "250Mi"
+              cpu: "150m"
+          volumeMounts:
+            - name: rmq-data
+              mountPath: /var/lib/rabbitmq
+      volumes:
+        - name: rmq-data
+          persistentVolumeClaim:
+            claimName: rmq-data
