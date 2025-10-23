@@ -21,7 +21,7 @@ spec:
             - name: SEED_USERNAME
               value: rmq
             - name: SEED_USER_PASSWORD
-              value: rmq
+              value: rmq #test
           resources:
             limits:
               memory: "250Mi"
