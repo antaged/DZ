@@ -20,9 +20,15 @@ spec:
             - containerPort: 15672
           env:
             - name: RABBITMQ_DEFAULT_USER
-              value: rmq
+              valueFrom:
+                secretKeyRef:
+                  name: rmq-secret
+                  key: RABBITMQ_DEFAULT_USER
             - name: RABBITMQ_DEFAULT_PASS
-              value: rmq
+              valueFrom:
+                secretKeyRef:
+                  name: rmq-secret
+                  key: RABBITMQ_DEFAULT_PASS
           resources:
             limits:
               memory: "250Mi"
