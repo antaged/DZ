@@ -22,13 +22,13 @@ spec:
             - name: RABBITMQ_DEFAULT_USER
               valueFrom:
                 secretKeyRef:
-                  name: rmq-secret
-                  key: RABBITMQ_DEFAULT_USER
+                  name: conv-api-secret
+                  key: AMQP_USER
             - name: RABBITMQ_DEFAULT_PASS
               valueFrom:
                 secretKeyRef:
-                  name: rmq-secret
-                  key: RABBITMQ_DEFAULT_PASS
+                  name: conv-api-secret
+                  key: AMQP_PASSWORD
           resources:
             limits:
               memory: "250Mi"
