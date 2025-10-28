@@ -45,5 +45,5 @@ spec:
                   key: AMQP_QUEUE                                                      
           resources:
             limits:
-              memory: "100Mi"
-              cpu: "100m"
+              memory: "250Mi"
+              cpu: "250m"

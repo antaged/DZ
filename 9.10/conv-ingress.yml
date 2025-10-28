@@ -4,23 +4,31 @@ metadata:
   name: convingress
   annotations:
     nginx.ingress.kubernetes.io/add-base-url: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
 spec:
   ingressClassName: nginx
   rules:
-  - host: conv.test
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: conv-app-cluster-ip
-            port: 
-              number: 80
-      - pathType: Prefix
-        path: "/api"
-        backend:
-          service:
-            name: conv-api-cluster-ip
-            port: 
-              number: 3000
+    - host: conv.test
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/uploads"
+          backend:
+            service:
+              name: conv-api-cluster-ip
+              port: 
+                number: 3000
+        - pathType: Prefix
+          path: "/api"
+          backend:
+            service:
+              name: conv-api-cluster-ip
+              port: 
+                number: 3000
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: conv-app-cluster-ip
+              port:
+                number: 80
