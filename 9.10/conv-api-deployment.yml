@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: conv-api
-          image: antonlarichev/short-api:v1.0
+          image: antonlarichev/conv-api:1.0
           ports:
             - containerPort: 3000
           env:
